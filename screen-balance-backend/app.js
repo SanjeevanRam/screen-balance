@@ -7,12 +7,10 @@ import { authenticateUser } from "./middlewares/authMiddleware.js";
 import ScreenTime from "./models/ScreenTime.js";
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 
-// Routes
 app.use("/api/users", userRoutes); // Adjusted to match frontend
 // Example route for user profile
 app.get('/api/users/profile', authenticateUser, async (req, res) => {

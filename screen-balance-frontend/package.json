@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-   "start": "react-scripts start",
-    "build": "npm install && npm run build",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -15,7 +14,8 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.0.2",
-    "react-scroll": "^1.9.0"
+    "react-scroll": "^1.9.0",
+    "web_development": "file:.."
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

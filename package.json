@@ -1,0 +1,13 @@
+{
+  "name": "web_development",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build":"npm install --prefix screen-balance-backend && npm install --prefix screen-balance-frontend && npm run build --prefix screen-balance-frontend",
+    "start": "npm run start --prefix screen-balance-backend"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
