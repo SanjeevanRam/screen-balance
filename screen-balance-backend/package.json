@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
-  "scripts": {
-    "dev": "server.js",
-    "start": "server.js"
-  },
+ "scripts": {
+  "dev": "node server.js",
+  "start": "node server.js"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
