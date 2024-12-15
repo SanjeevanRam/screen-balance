@@ -13,7 +13,10 @@ import { protect,authenticateUser } from "../middlewares/authMiddleware.js";
 const router = express.Router();
 
 // Register route (uses validateUser)
-router.post("/register", validateUser, registerUser);
+router.post("/register", validateUser,(req,res,next) =>{
+  console.log("Register route hit");
+    next();
+},registerUser);
 
 // Login route (uses validateLogin)
 router.post("/login", validateLogin, loginUser);

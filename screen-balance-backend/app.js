@@ -5,9 +5,15 @@ import errorHandler from "./middlewares/errorMiddleware.js";
 import userRoutes from "./routes/userRoutes.js";
 import { authenticateUser } from "./middlewares/authMiddleware.js";
 import ScreenTime from "./models/ScreenTime.js";
+import User from "./models/User.js"; // Make sure this import exists
+
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ['http://localhost:5173', 'https://screen-balance.onrender.com'], // Allow both local and deployed URLs
+    credentials: true, // Allow cookies or credentials if needed
+  }));
 app.use(express.json());
 app.use(bodyParser.json());
 

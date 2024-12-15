@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import instance from "../api";
+import axiosInstance from "../api";
 import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
@@ -16,7 +16,7 @@ function Dashboard() {
       navigate("/login"); // Redirect to login if no token
     } else {
       // Fetch user data
-      instance
+      axiosInstance
         .get("/api/users/profile", {
           headers: { Authorization: `Bearer ${token}` }, // Send token in header
         })
@@ -37,7 +37,7 @@ function Dashboard() {
         });
 
       // Fetch screen time stats
-      instance
+      axiosInstance
         .get("/api/users/stats", {
           headers: { Authorization: `Bearer ${token}` }, // Send token in header
         })
@@ -59,7 +59,7 @@ function Dashboard() {
       return;
     }
 
-    instance
+    axiosInstance
       .put(
         "/api/users/stats", // Ensure the correct endpoint path
         { screenTime: screenTime + 1 },

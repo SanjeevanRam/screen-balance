@@ -1,23 +1,31 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "../api"; // Assuming this is the axios instance for your API
-
-const Register = () => {
+import axiosInstance from "../api";
+  
+  const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      const response = await axios.post("/api/register", { name, email, password });
+      const response = await axiosInstance.post("/api/users/register", { name, email, password });
       console.log("Registration successful:", response.data);
-      navigate("/login"); // Redirect to login page after successful registration
+      navigate("/login");
     } catch (error) {
-      setError("Registration failed. Please try again.");
+      if (error.response && error.response.data) {
+        setError(error.response.data.message || "Registration failed. Please try again.");
+      } else {
+        setError("Network error. Please try again later.");
+      }
       console.error("Registration failed:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -54,8 +62,9 @@ const Register = () => {
           <button
             type="submit"
             className="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            disabled={loading}
           >
-            Register
+            {loading ? "Registering..." : "Register"}
           </button>
         </form>
         <p className="mt-4 text-center">
