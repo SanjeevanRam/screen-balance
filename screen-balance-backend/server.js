@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import app from "./app.js";
-
+import express from "express";
 import path from "path";
 
 dotenv.config();
