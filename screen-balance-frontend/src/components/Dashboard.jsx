@@ -26,8 +26,14 @@ function Dashboard() {
         })
         .catch((error) => {
           setLoading(false);
-          setError("Error fetching user data, please try again.");
-          console.error("Error fetching user data:", error);
+          if (error.response?.status === 401) {
+            setError("Session expired. Please log in again.");
+            localStorage.removeItem("token"); // Remove token if expired
+            navigate("/login"); // Redirect to login
+          } else {
+            setError("Error fetching user data, please try again.");
+            console.error("Error fetching user data:", error);
+          }
         });
 
       // Fetch screen time stats
@@ -52,7 +58,7 @@ function Dashboard() {
       navigate("/login");
       return;
     }
-  
+
     instance
       .put(
         "/api/users/stats", // Ensure the correct endpoint path
@@ -71,7 +77,6 @@ function Dashboard() {
         console.error("Error updating screen time:", error.response?.data || error.message);
       });
   };
-  
 
   const handleLogout = () => {
     localStorage.removeItem("token");
