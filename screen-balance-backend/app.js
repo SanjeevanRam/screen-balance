@@ -11,9 +11,13 @@ const app = express();
 
 app.use(
   cors({
-    origin: ['http://localhost:5173', 'https://screen-balance.onrender.com'], // Allow both local and deployed URLs
+    origin: "http://localhost:5173", // Frontend URL
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
+    allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
     credentials: true, // Allow cookies or credentials if needed
-  }));
+  })
+);
+
 app.use(express.json());
 app.use(bodyParser.json());
 

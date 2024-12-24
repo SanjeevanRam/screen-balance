@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom"; // For page navigation
 import { Link as ScrollLink } from "react-scroll"; // For smooth in-page scrolling
 import ActivitySuggestions from "../components/ActivitySuggestions";
