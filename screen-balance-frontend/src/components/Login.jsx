@@ -19,11 +19,7 @@ const handleSubmit = async (e) => {
     });
 
     const { token } = response.data;
-
-    // Save token in local storage or state
     localStorage.setItem("token", token);
-
-    // Redirect to dashboard or home page
     navigate("/");
   } catch (err) {
     setError(err.response?.data?.message || "Login failed. Please try again.");

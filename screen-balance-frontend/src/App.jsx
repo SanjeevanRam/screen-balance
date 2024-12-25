@@ -1,8 +1,8 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Import routing components
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; 
 import Home from "./pages/Home";
-import Login from "./components/Login"; // Assuming you have a Login page
-import Register from "./components/Register"; // Assuming you have a Register page
-import Dashboard from "./components/Dashboard"; // Assuming this is the protected Dashboard component
+import Login from "./components/Login"; 
+import Register from "./components/Register"; 
+import Dashboard from "./components/Dashboard"; 
 import './style/tailwind.css';
 
 const App = () => {

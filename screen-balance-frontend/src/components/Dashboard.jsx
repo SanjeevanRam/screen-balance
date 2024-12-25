@@ -13,36 +13,34 @@ function Dashboard() {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      navigate("/login"); // Redirect to login if no token
+      navigate("/login"); 
     } else {
-      // Fetch user data
       axiosInstance
         .get("/api/users/profile", {
           headers: { Authorization: `Bearer ${token}` }, // Send token in header
         })
         .then((response) => {
-          setUser(response.data); // Set user data
-          setLoading(false); // Stop loading
+          setUser(response.data); 
+          setLoading(false); 
         })
         .catch((error) => {
           setLoading(false);
           if (error.response?.status === 401) {
             setError("Session expired. Please log in again.");
-            localStorage.removeItem("token"); // Remove token if expired
-            navigate("/login"); // Redirect to login
+            localStorage.removeItem("token"); 
+            navigate("/login"); 
           } else {
             setError("Error fetching user data, please try again.");
             console.error("Error fetching user data:", error);
           }
         });
 
-      // Fetch screen time stats
       axiosInstance
         .get("/api/users/stats", {
-          headers: { Authorization: `Bearer ${token}` }, // Send token in header
+          headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {
-          setScreenTime(response.data.screenTime); // Update screen time
+          setScreenTime(response.data.screenTime); 
         })
         .catch((error) => {
           setError("Error fetching screen time, please try again.");
@@ -61,7 +59,7 @@ function Dashboard() {
 
     axiosInstance
       .put(
-        "/api/users/stats", // Ensure the correct endpoint path
+        "/api/users/stats", 
         { screenTime: screenTime + 1 },
         {
           headers: {
@@ -80,7 +78,7 @@ function Dashboard() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate("/login"); // Redirect to login on logout
+    navigate("/login"); 
   };
 
   if (loading) {

@@ -9,7 +9,7 @@ const errorHandler = (err, req, res, next) => {
 
 const getUserProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id); // Adjust to your schema
+    const user = await User.findById(req.user.id); 
     res.json(user);
   } catch (error) {
     console.error("Database error:", error);

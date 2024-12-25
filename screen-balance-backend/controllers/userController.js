@@ -38,8 +38,6 @@ export const loginUser = async (req, res) => {
     if (!user) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
-
-    // Compare the plain password with the hashed password
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
       return res.status(401).json({ message: "Invalid email or password" });
@@ -51,7 +49,6 @@ export const loginUser = async (req, res) => {
     res.status(500).json({ error: "Something went wrong, please try again.", details: error.message });
   }
 };
-
 
 // Get all users
 export const getAllUsers = async (req, res) => {

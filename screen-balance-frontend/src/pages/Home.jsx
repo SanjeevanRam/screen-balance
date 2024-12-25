@@ -1,22 +1,20 @@
 
-import { Link } from "react-router-dom"; // For page navigation
-import { Link as ScrollLink } from "react-scroll"; // For smooth in-page scrolling
+import { Link } from "react-router-dom"; 
+import { Link as ScrollLink } from "react-scroll"; 
 import ActivitySuggestions from "../components/ActivitySuggestions";
 import BreakNotification from "../components/BreakNotification";
 import Timer from "../components/Timer";
 import Dashboard from "../components/Dashboard";
-import Stats from "../pages/Stats"; // Import Stats component
+import Stats from "../pages/Stats"; 
 
 import "../App.css";
 
 const Home = () => {
   return (
     <div>
-      {/* Navigation Bar */}
       <header className="navbar">
         <div className="logo">Screen Balance</div>
         <ul className="nav-links">
-          {/* In-page scrolling */}
           <li>
             <ScrollLink to="welcome" smooth={true} duration={500}>
               Home
@@ -37,13 +35,11 @@ const Home = () => {
               Contact
             </ScrollLink>
           </li>
-          {/* React Router Links for external routes */}
           <li><Link to="/login" className="btn-nav">Login</Link></li>
           <li><Link to="/register" className="btn-nav">Register</Link></li>
         </ul>
       </header>
 
-      {/* Welcome Section */}
       <section id="welcome" className="welcome-section">
         <div className="welcome-content">
           <h1>Welcome to Screen Balance</h1>
@@ -52,12 +48,10 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Dashboard Section */}
       <section id="dashboard">
         <Dashboard />
       </section>
 
-      {/* Features Section */}
       <section id="features" className="features-section">
         <h2>Features</h2>
         <div className="feature">
@@ -76,12 +70,10 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
       <section id="stats" className="stats-section">
         <Stats />
       </section>
 
-      {/* About Section */}
       <section id="about" className="about-section">
         <h2>About Us</h2>
         <p>
@@ -91,14 +83,12 @@ const Home = () => {
         </p>
       </section>
 
-      {/* Contact Section */}
       <section id="contact" className="contact-section">
         <h2>Contact Us</h2>
         <p>Have questions or feedback? We do love to hear from you!</p>
         <button className="cta-button">Contact Support</button>
       </section>
 
-      {/* Footer */}
       <footer>
         <p>&copy; 2024 Screen Balance. All rights reserved.</p>
       </footer>

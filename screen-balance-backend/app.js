@@ -4,29 +4,26 @@ import bodyParser from "body-parser";
 import errorHandler from "./middlewares/errorMiddleware.js";
 import userRoutes from "./routes/userRoutes.js";
 import { authenticateUser } from "./middlewares/authMiddleware.js";
-import ScreenTime from "./models/ScreenTime.js";
-import User from "./models/User.js"; // Make sure this import exists
+import User from "./models/User.js"; 
 
 const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // Frontend URL
-    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
-    allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
-    credentials: true, // Allow cookies or credentials if needed
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE"], 
+    allowedHeaders: ["Content-Type", "Authorization"], 
+    credentials: true,
   })
 );
 
 app.use(express.json());
 app.use(bodyParser.json());
 
-app.use("/api/users", userRoutes); // Adjusted to match frontend
-// Example route for user profile
+app.use("/api/users", userRoutes); 
 app.get('/api/users/profile', authenticateUser, async (req, res) => {
   try {
-      // Assuming you're fetching user data from the database
-      const user = await User.findById(req.user.id); // Make sure `req.user.id` is set correctly after authentication
+      const user = await User.findById(req.user.id); 
       if (!user) {
           return res.status(404).json({ message: 'User not found' });
       }
@@ -50,13 +47,19 @@ app.get("/api/stats", authenticateUser, (req, res) => {
     });
 });
 
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+});
 
-// Catch 404 Errors (must come before errorHandler)
+app.all('*', (req, res) => {
+  res.status(404).json({ message: `Route ${req.method} ${req.url} not found` });
+});
+
 app.use((req, res, next) => {
   res.status(404).json({ message: "Route not found" });
 });
 
-// Error handling middleware (must come last)
 app.use(errorHandler);
 
 export default app;
